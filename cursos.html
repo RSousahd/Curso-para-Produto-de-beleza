@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Apresentação Interativa - Cosméticos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f8e1f4, #fdfdfd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+
+    .step {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #b80077;
+      margin-bottom: 10px;
+    }
+
+    p, ul {
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #b80077;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #8e005c;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Modal de vídeo */
+    #videoModal {
+      display: none; /* Escondido por padrão */
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #videoModal.active {
+      display: flex; /* Mostrar quando ativo */
+    }
+
+    #videoModal > div {
+      position: relative;
+      width: 80%;
+      max-width: 720px;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #videoModal video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    #closeVideo {
+      position: absolute;
+      top: -35px;
+      right: 0;
+      background: #8a2be2;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #closeVideo:hover {
+      background-color: #6f1fc4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Passos da apresentação -->
+    <div id="step-1" class="step active">
+      <h1>🎯 Bem-vindo(a) à Apresentação Estratégica</h1>
+      <p>Descubra como transformar cosméticos em renda com tutoria personalizada e autoridade local.</p>
+    </div>
+
+    <div id="step-2" class="step">
+      <h1>👑 Seja uma Referência no Seu Bairro</h1>
+      <p>Você será mais que uma revendedora: uma tutora de beleza com método próprio e resultados reais.</p>
+    </div>
+
+    <div id="step-3" class="step">
+      <h1>💼 Produto + Tutoria = Lucro Certo</h1>
+      <p>Venda kits de beleza + ofereça atendimento personalizado. Ganhe em dobro com cada cliente.</p>
+    </div>
+
+    <div id="step-4" class="step">
+      <h1>📆 Plano de Ação Semanal</h1>
+      <p>Semana 1: Grupos<br>Semana 2: Visitas<br>Semana 3: Sorteios<br>Semana 4: Fechamento e fidelização</p>
+    </div>
+
+    <div id="step-5" class="step">
+      <h1>🚀 Material Visual Pronto</h1>
+      <p>Cada técnica se seguida passo a passo, levará você a novos resultados.</p>
+    </div>
+
+    <div id="step-6" class="step">
+      <h1>🎓 Essa tutoria é para quem quer mudança</h1>
+      <p>Nossas conferências serão com base nesta apresentação: público-alvo, metas, estratégias e vendas práticas. Com acompanhamento personalizado.</p>
+    </div>
+
+    <div id="step-7" class="step">
+      <h1>📈 Você é quem determina seu crescimento.</h1>
+      <p>Revisão mensal de lucros, metas e melhorias. Alcance, experimente e fidelize. Após resultados concretos: Expanda, motive e inspire novas revendedoras. Você é o seu único limite.</p>
+    </div>
+
+    <div id="step-8" class="step">
+      <h1>🌟 Obrigado(a)!</h1>
+      <p>Você está pronta para assumir o controle da sua vida, unindo beleza e estratégia. Foque, pois essa tutoria é seu guia prático para o sucesso.<br> Só você pode determinar o resultado. <strong>Meu papel é te auxiliar a desbloquear limitações.</strong></p>
+    </div>
+
+    <!-- Curso final -->
+    <div id="curso" class="step">
+      <h1>📚 Início do Curso: Como Ser Uma Tutora de Beleza</h1>
+      <p>Vamos iniciar sua capacitação prática para transformar cosméticos em carreira!</p>
+      <ul>
+        <li><a href="modulo1.html"><strong>Módulo 1:</strong> Identificando seu público ideal</a></li>
+        <li><a href="modulo2.html"><strong>Módulo 2:</strong> Estratégias de abordagem e autoridade</a></li>
+        <li><a href="modulo3.html"><strong>Módulo 3:</strong> Como estruturar sua tutoria personalizada</a></li>
+        <li><a href="modulo4.html"><strong>Módulo 4:</strong> Técnicas de fidelização e recompra</a></li>
+        <li><a href="modulo5.html"><strong>Módulo 5:</strong> Planejamento semanal e metas reais</a></li>
+        <li><a href="modulo6.html"><strong>Módulo 6:</strong> Marketing Pessoal e Autoridade Local</a></li>
+        <li><a href="Bonus.html"><strong>🌟 Bônus 🌟</strong> Como estruturar sua tutoria personalizada</a></li>
+      </ul>
+    </div>
+
+    <button id="nextBtn">➡️ Próximo</button>
+
+  </div>
+
+  <!-- Modal do vídeo -->
+  <div id="videoModal">
+    <div>
+      <video id="introVideo" controls>
+        <source src="seu-video.mp4" type="video/mp4" />
+        Seu navegador não suporta o vídeo.
+      </video>
+      <button id="closeVideo">Fechar ✖</button>
+    </div>
+  </div>
+
+  <script>
+    // Controle dos passos da apresentação
+    let currentStep = 1;
+    const totalSteps = 8;
+    const nextBtn = document.getElementById('nextBtn');
+
+    function showStep(step) {
+      for(let i=1; i<=totalSteps; i++) {
+        document.getElementById(`step-${i}`).classList.remove('active');
+      }
+      document.getElementById('curso').classList.remove('active');
+
+      if(step <= totalSteps) {
+        document.getElementById(`step-${step}`).classList.add('active');
+      } else if(step === totalSteps + 1) {
+        document.getElementById('curso').classList.add('active');
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if(currentStep < totalSteps + 1) {
+        currentStep++;
+      } else {
+        currentStep = 1;
+      }
+
+      showStep(currentStep);
+
+      if(currentStep === totalSteps + 1) {
+        nextBtn.innerText = '🔄 Voltar ao Início';
+      } else {
+        nextBtn.innerText = '➡️ Próximo';
+      }
+    });
+
+    showStep(currentStep);
+
+    // Controle do modal de vídeo para aparecer só 1 vez (persistente no localStorage)
+    const videoModal = document.getElementById('videoModal');
+    const closeBtn = document.getElementById('closeVideo');
+    const introVideo = document.getElementById('introVideo');
+
+    const videoShown = localStorage.getItem('videoShown');
+
+    function showVideo() {
+      if (!videoShown) {
+        videoModal.classList.add('active');
+        introVideo.play();
+        localStorage.setItem('videoShown', 'true');
+      }
+    }
+
+    closeBtn.addEventListener('click', () => {
+      introVideo.pause();
+      videoModal.classList.remove('active');
+    });
+
+    window.addEventListener('load', () => {
+      showVideo();
+    });
+  </script>
+</body>
+</html>
