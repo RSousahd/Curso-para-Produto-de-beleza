@@ -5,132 +5,207 @@
   <title>Apresentação Interativa - Cosméticos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #f8e1f4, #fdfdfd);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #333;
-    }
+   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-    .container {
-      background-color: white;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      padding: 30px;
-      max-width: 600px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-    }
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(120deg, #fce4ec, #f3e5f5, #e1f5fe);
+  background-size: 600% 600%;
+  animation: gradientBG 20s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  color: #333;
+}
 
-    .step {
-      display: none;
-      animation: fadeIn 0.5s ease-in-out;
-    }
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
 
-    .step.active {
-      display: block;
-    }
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 850px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
-    h1 {
-      font-size: 24px;
-      color: #b80077;
-      margin-bottom: 10px;
-    }
+.step {
+  display: none;
+  animation: showStep 0.6s ease forwards;
+  transform: scale(0.98);
+  opacity: 0;
+}
 
-    p, ul {
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: left;
-      margin-bottom: 15px;
-    }
+.step.active {
+  display: block;
+}
 
-    ul {
-      padding-left: 20px;
-      text-align: left;
-    }
+@keyframes showStep {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
-    button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #b80077;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      user-select: none;
-    }
+h1 {
+  font-size: 26px;
+  color: #d50087;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
 
-    button:hover {
-      background-color: #8e005c;
-    }
+p, ul {
+  font-size: 17px;
+  line-height: 1.6;
+  text-align: left;
+  margin-bottom: 18px;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+ul {
+  padding-left: 25px;
+}
 
-    /* Modal de vídeo */
-    #videoModal {
-      display: none; /* Escondido por padrão */
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+button {
+  position: relative;
+  padding: 14px 28px;
+  font-size: 16px;
+  background-color: #d50087;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
 
-    #videoModal.active {
-      display: flex; /* Mostrar quando ativo */
-    }
+button:hover {
+  background-color: #b2006b;
+  box-shadow: 0 0 18px #f06292;
+  transform: scale(1.05);
+}
 
-    #videoModal > div {
-      position: relative;
-      width: 80%;
-      max-width: 720px;
-      background: #000;
-      border-radius: 8px;
-      overflow: hidden;
-    }
+button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  animation: pulse 2s infinite;
+}
 
-    #videoModal video {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
 
-    #closeVideo {
-      position: absolute;
-      top: -35px;
-      right: 0;
-      background: #8a2be2;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      padding: 6px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
+#videoModal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-    #closeVideo:hover {
-      background-color: #6f1fc4;
-    }
+#videoModal.active {
+  display: flex;
+}
+
+#videoModal > div {
+  position: relative;
+  width: 95%;
+  max-width: 900px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#videoModal video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#closeVideo {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: #e91e63;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#closeVideo:hover {
+  background-color: #c2185b;
+}
+
+.curso-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.curso-texto {
+  flex: 1 1 55%;
+  text-align: left;
+}
+
+.curso-video {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.curso-video iframe,
+.curso-video video {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 900px) {
+  .curso-container {
+    flex-direction: column;
+  }
+
+  .curso-texto, .curso-video {
+    width: 100%;
+  }
+}
+
+.centralizado {
+  text-align: center;
+}
+
+
   </style>
 </head>
 <body>
 
   <div class="container">
-
-    <!-- Passos da apresentação -->
     <div id="step-1" class="step active">
       <h1>🎯 Bem-vindo(a) à Apresentação Estratégica</h1>
       <p>Descubra como transformar cosméticos em renda com tutoria personalizada e autoridade local.</p>
@@ -168,33 +243,42 @@
 
     <div id="step-8" class="step">
       <h1>🌟 Obrigado(a)!</h1>
-      <p>Você está pronta para assumir o controle da sua vida, unindo beleza e estratégia. Foque, pois essa tutoria é seu guia prático para o sucesso.<br> Só você pode determinar o resultado. <strong>Meu papel é te auxiliar a desbloquear limitações.</strong></p>
+      <p>Você está pronta para assumir o controle da sua vida, unindo beleza e estratégia. <strong>Meu papel é te auxiliar a desbloquear limitações.</strong></p>
     </div>
 
-    <!-- Curso final -->
+    <!-- Curso -->
     <div id="curso" class="step">
-      <h1>📚 Início do Curso: Como Ser Uma Tutora de Beleza</h1>
-      <p>Vamos iniciar sua capacitação prática para transformar cosméticos em carreira!</p>
-      <ul>
-        <li><a href="modulo1.html"><strong>Módulo 1:</strong> Identificando seu público ideal</a></li>
-        <li><a href="modulo2.html"><strong>Módulo 2:</strong> Estratégias de abordagem e autoridade</a></li>
-        <li><a href="modulo3.html"><strong>Módulo 3:</strong> Como estruturar sua tutoria personalizada</a></li>
-        <li><a href="modulo4.html"><strong>Módulo 4:</strong> Técnicas de fidelização e recompra</a></li>
-        <li><a href="modulo5.html"><strong>Módulo 5:</strong> Planejamento semanal e metas reais</a></li>
-        <li><a href="modulo6.html"><strong>Módulo 6:</strong> Marketing Pessoal e Autoridade Local</a></li>
-        <li><a href="Bonus.html"><strong>🌟 Bônus 🌟</strong> Como estruturar sua tutoria personalizada</a></li>
-      </ul>
+      <div class="curso-container">
+        <div class="curso-texto">
+          <div class="centralizado">
+  <h1>📚 Início do Curso: Como Ser Uma Tutora de Beleza. <strong> Metodo </strong></h1>
+  <p>Vamos iniciar sua capacitação prática para transformar cosméticos em carreira!</p>
+</div>
+
+          <ul>
+            <li><a href="modulo1.html"><strong>Módulo 1:</strong> Identificando seu público ideal</a></li>
+            <li><a href="modulo2.html"><strong>Módulo 2:</strong> Estratégias de abordagem e autoridade</a></li>
+            <li><a href="modulo3.html"><strong>Módulo 3:</strong> Como estruturar sua tutoria personalizada</a></li>
+            <li><a href="modulo4.html"><strong>Módulo 4:</strong> Técnicas de fidelização e recompra</a></li>
+            <li><a href="modulo5.html"><strong>Módulo 5:</strong> Planejamento semanal e metas reais</a></li>
+            <li><a href="modulo6.html"><strong>Módulo 6:</strong> Marketing Pessoal e Autoridade Local</a></li>
+            <li><a href="Bonus.html"><strong>🌟 Bônus:</strong> Como estruturar sua tutoria personalizada</a></li>
+          </ul>
+        </div>
+        <div class="curso-video">
+          <div id="cursoVideoContainer"></div>
+        </div>
+      </div>
     </div>
 
     <button id="nextBtn">➡️ Próximo</button>
-
   </div>
 
-  <!-- Modal do vídeo -->
+  <!-- Modal de vídeo inicial -->
   <div id="videoModal">
     <div>
       <video id="introVideo" controls>
-        <source src="seu-video.mp4" type="video/mp4" />
+        <source src="intro.mp4" type="video/mp4" />
         Seu navegador não suporta o vídeo.
       </video>
       <button id="closeVideo">Fechar ✖</button>
@@ -202,47 +286,35 @@
   </div>
 
   <script>
-    // Controle dos passos da apresentação
     let currentStep = 1;
     const totalSteps = 8;
     const nextBtn = document.getElementById('nextBtn');
 
     function showStep(step) {
-      for(let i=1; i<=totalSteps; i++) {
+      for (let i = 1; i <= totalSteps; i++) {
         document.getElementById(`step-${i}`).classList.remove('active');
       }
       document.getElementById('curso').classList.remove('active');
 
-      if(step <= totalSteps) {
+      if (step <= totalSteps) {
         document.getElementById(`step-${step}`).classList.add('active');
-      } else if(step === totalSteps + 1) {
+      } else if (step === totalSteps + 1) {
         document.getElementById('curso').classList.add('active');
+        // Link YouTube (exemplo funcional com embed)
+        renderCursoVideo("https://www.youtube.com/embed/pNWGJPejwUQ?si=WZivasa3Pcy3k0Qm");
+        // Ou um vídeo local: renderCursoVideo("vid/meuvideo.mp4");
       }
     }
 
     nextBtn.addEventListener('click', () => {
-      if(currentStep < totalSteps + 1) {
-        currentStep++;
-      } else {
-        currentStep = 1;
-      }
-
+      currentStep = (currentStep < totalSteps + 1) ? currentStep + 1 : 1;
       showStep(currentStep);
-
-      if(currentStep === totalSteps + 1) {
-        nextBtn.innerText = '🔄 Voltar ao Início';
-      } else {
-        nextBtn.innerText = '➡️ Próximo';
-      }
+      nextBtn.innerText = (currentStep === totalSteps + 1) ? '🔄 Voltar ao Início' : '➡️ Próximo';
     });
 
-    showStep(currentStep);
-
-    // Controle do modal de vídeo para aparecer só 1 vez (persistente no localStorage)
     const videoModal = document.getElementById('videoModal');
     const closeBtn = document.getElementById('closeVideo');
     const introVideo = document.getElementById('introVideo');
-
     const videoShown = localStorage.getItem('videoShown');
 
     function showVideo() {
@@ -260,7 +332,109 @@
 
     window.addEventListener('load', () => {
       showVideo();
+      showStep(currentStep);
     });
+
+    function renderCursoVideo(videoUrl) {
+      const container = document.getElementById('cursoVideoContainer');
+      container.innerHTML = '';
+
+      if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+        // Corrigir URL curta para o formato embed
+        if (videoUrl.includes('youtu.be')) {
+          const videoId = videoUrl.split('/').pop().split('?')[0];
+          videoUrl = `https://www.youtube.com/embed/${videoId}`;
+        }
+
+        const iframe = document.createElement('iframe');
+        iframe.src = videoUrl;
+        iframe.width = '100%';
+        iframe.height = '600';
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        container.appendChild(iframe);
+      } else {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.width = '100%';
+        video.innerHTML = `<source src="${videoUrl}" type="video/mp4">Seu navegador não suporta vídeo.`;
+        container.appendChild(video);
+      }
+    }
   </script>
+
+  <!-- Música de fundo (pode colocar outra .mp3 se quiser) -->
+<audio id="bg-music" loop autoplay>
+  <source src="click/fun-day-333366.mp3" type="audio/mpeg">
+  Seu navegador não suporta áudio.
+</audio>
+
+
+
+<!-- Lottie Animation -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<lottie-player
+  src="https://assets1.lottiefiles.com/packages/lf20_ylzlt8db.json"
+  background="transparent"
+  speed="1"
+  style="position: absolute; top: 10px; right: 10px; width: 100px; height: 100px; z-index: 10;"
+  loop
+  autoplay>
+</lottie-player>
+
+<!-- Partículas no fundo -->
+<div id="particles-js" style="position:fixed; width:100%; height:100%; z-index:-1;"></div>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 80 },
+      color: { value: "#f48fb1" },
+      shape: { type: "circle" },
+      opacity: { value: 0.3 },
+      size: { value: 5 },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: "#f06292",
+        opacity: 0.2,
+        width: 1
+      },
+      move: { enable: true, speed: 2 }
+    }
+  });
+</script>
+
+<!-- Som ao clicar no botão -->
+<audio id="click-sound" src="click.mp3" preload="auto"></audio>
+<script>
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    const clickSound = document.getElementById('click-sound');
+    clickSound.volume = 0.2;
+    clickSound.play();
+  });
+</script>
+
+<script>
+  const bgMusic = document.getElementById('bg-music');
+  let t = 0;
+
+  function updateVolume() {
+    // Varia entre 0.15 e 0.35 suavemente (ajuste conforme desejar)
+    const volume = 0.25 + 0.1 * Math.sin(t);
+    bgMusic.volume = volume;
+    t += 0.03; // velocidade da oscilação
+    requestAnimationFrame(updateVolume);
+  }
+
+  bgMusic.addEventListener('canplay', () => {
+    bgMusic.play();
+    updateVolume();
+  });
+</script>
+
+
 </body>
 </html>
